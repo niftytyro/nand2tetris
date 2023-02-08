@@ -1,0 +1,17 @@
+/**
+* DMux gate:
+* x = 1 if (sel == 0 and in == 1)
+*     0 otherwise
+* y = 1 if (sel == 1 and in == 1)
+*     0 otherwise
+*/
+
+CHIP DMux {
+  IN in, sel;
+  OUT x, y;
+
+  PARTS:
+  Not (in=sel, out=notsel);
+  And (a=notsel, b=in, out=x);
+  And (a=sel, b=in, out=y);
+}
