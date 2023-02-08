@@ -1,0 +1,16 @@
+/**
+* Multiplexor gate:
+* out = x if (sel == 0)
+*       y otherwise
+*/
+
+CHIP Multiplexor {
+  IN x, y, sel;
+  OUT out;
+
+  PARTS:
+  Not(in=sel, out=notsel);
+  And(a=x, b=notsel, out=xsel);
+  And(a=y, b=sel, out=ysel);
+  Or(a=xsel, b=ysel, out=out);
+}
