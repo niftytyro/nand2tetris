@@ -1,10 +1,10 @@
 /**
-* Multiplexor gate:
+* Mux gate:
 * out = x if (sel == 0)
 *       y otherwise
 */
 
-CHIP Multiplexor {
+CHIP Mux {
   IN x, y, sel;
   OUT out;
 
