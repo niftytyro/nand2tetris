@@ -1,15 +1,15 @@
 /**
 * And gate:
-* out = 1 if (a == 1 and b == 1)
+* out = 1 if (x == 1 and y == 1)
 *       0 otherwise
 */
 
 CHIP And {
-    IN a, b;
+    IN x, y;
     OUT out;
 
     PARTS:
-    Nand(a=a, b=b, out=n);
+    Nand(a=x, b=y, out=n);
     Nand(a=n, b=n, out=out);
 }
 

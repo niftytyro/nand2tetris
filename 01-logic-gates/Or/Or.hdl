@@ -1,7 +1,7 @@
 /**
 * Or gate:
-* out = 0 if (a == 0 and b == 0)
-* else 1
+* out = 0 if (x == 0 and y == 0)
+*       1 otherwise
 */
 
 CHIP Or {

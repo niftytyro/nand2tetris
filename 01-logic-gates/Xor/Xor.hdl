@@ -1,0 +1,15 @@
+/**
+* Xor gate:
+* out = 0 if (x == y)
+*       1 otherwise
+*/
+
+CHIP Xor {
+  IN x, y;
+  OUT out;
+
+  PARTS:
+  Nand (a=x, b=y, out=nand);
+  Or (a=x, b=y, out=or);
+  And (a=nand, b=or, out=out);
+}
