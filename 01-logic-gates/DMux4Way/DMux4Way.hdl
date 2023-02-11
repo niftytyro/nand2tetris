@@ -1,0 +1,22 @@
+/**
+* 4-Way DMux Gate:
+* a = in if sel = 00
+*         0 otherwise
+* b = in if sel = 01
+*         0 otherwise
+* c = in if sel = 10
+*         0 otherwise
+* d = in if sel = 11
+*         0 otherwise
+*/
+
+CHIP DMux4Way {
+  IN in, sel[2];
+  OUT a, b, c, d;
+
+  PARTS:
+  DMux (in=in, sel=sel[1], a=ab, b=cd);
+  
+  DMux (in=ab, sel=sel[0], a=a, b=b);
+  DMux (in=cd, sel=sel[0], a=c, b=d);
+}
