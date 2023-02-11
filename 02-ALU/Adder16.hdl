@@ -2,7 +2,7 @@
  * A 16-bit adder that computes the sum of 2 16-bit numbers.
  */
 
-CHIP Adder {
+CHIP Adder16 {
   IN a[16], b[16];
   OUT sum[16];
 
