@@ -1,0 +1,31 @@
+/**
+* This is an implementation of the ALU.
+*/
+
+CHIP ALU {
+  IN x[16], y[16], zx, nx, zy, ny, f, no;
+  OUT out[16], zr, ng;
+
+  PARTS:
+  Mux16 (a=x, b=false, sel=zx, out=tempx);
+  Not16 (in=tempx, out=notx);
+  Mux16 (a=tempx, b=notx, sel=nx, out=outx);
+
+  Mux16 (a=y, b=false, sel=zy, out=tempy);
+  Not16 (in=tempy, out=noty);
+  Mux16 (a=tempy, b=noty, sel=ny, out=outy);
+
+  And16 (a=outx, b=outy, out=andres);
+  Add16 (a=outx, b=outy, out=sum);
+
+  Mux16 (a=andres, b=sum, sel=f, out=preout);
+
+  Not16 (in=preout, out=notout);
+  Mux16 (a=preout, b=notout, sel=no, out=out, out[15]=ng, out[0..7]=firstHalf, out[8..15]=secondHalf);
+
+  Or8Way (in=firstHalf, out=zrInFirstHalf);
+  Or8Way (in=secondHalf, out=zrInSecondHalf);
+  Or (a=zrInFirstHalf, b=zrInSecondHalf, out=notzr);
+  Not (in=notzr, out=zr);
+}
+
