@@ -1,0 +1,12 @@
+/**
+* Computes the sum of 2 bits, returning the sum and the carry bit.
+*/
+
+CHIP HalfAdder {
+  IN a, b;
+  OUT sum, carry;
+
+  PARTS:
+  Xor (a=a, b=b, out=sum);
+  And (a=a, b=b, out=carry);
+}
