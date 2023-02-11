@@ -1,0 +1,38 @@
+/**
+* 8-way 16-bit Mux:
+* out[0..16] = a[0..16] if (sel == [0, 0, 0])
+* out[0..16] = b[0..16] if (sel == [0, 0, 1])
+* out[0..16] = c[0..16] if (sel == [0, 1, 0])
+* out[0..16] = d[0..16] if (sel == [0, 1, 1])
+* out[0..16] = e[0..16] if (sel == [1, 0, 0])
+* out[0..16] = f[0..16] if (sel == [1, 0, 1])
+* out[0..16] = g[0..16] if (sel == [1, 1, 0])
+* out[0..16] = h[0..16] if (sel == [1, 1, 1])
+*/
+
+CHIP Mux8Way16 {
+  IN a[16], b[16], c[16], d[16], e[16], f[16], g[16], h[16], sel[3];
+  OUT out[16];
+
+  PARTS:
+  Not (in=sel[0], out=notsel0);
+  Not (in=sel[1], out=notsel1);
+  Not (in=sel[2], out=notsel2);
+
+  And3 (a=notsel2, b=notsel1, c=sel[0], out=selb);
+  And3 (a=notsel2, b=sel[1], c=notsel0, out=selc);
+  And3 (a=notsel2, b=sel[1], c=sel[0], out=seld);
+  And3 (a=sel[2], b=notsel1, c=notsel0, out=sele);
+  And3 (a=sel[2], b=notsel1, c=sel[0], out=self);
+  And3 (a=sel[2], b=sel[1], c=notsel0, out=selg);
+  And3 (a=sel[2], b=sel[1], c=sel[0], out=selh);
+
+  Mux16 (a=a, b=b, sel=selb, out=out1);
+  Mux16 (a=out1, b=c, sel=selc, out=out2);
+  Mux16 (a=out2, b=d, sel=seld, out=out3);
+  Mux16 (a=out3, b=e, sel=sele, out=out4);
+  Mux16 (a=out4, b=f, sel=self, out=out5);
+  Mux16 (a=out5, b=g, sel=selg, out=out6);
+  Mux16 (a=out6, b=h, sel=selh, out=out);
+}
+
