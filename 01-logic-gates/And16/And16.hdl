@@ -1,0 +1,27 @@
+/**
+* 16-bit And:
+* for i = 0..15; out[i] = (x[i] and y[i])
+*/
+
+CHIP And16 {
+  IN x[16], y[16];
+  OUT out[16];
+
+  PARTS:
+  And (a=x[0], b=y[0], out=out[0]);
+  And (a=x[1], b=y[1], out=out[1]);
+  And (a=x[2], b=y[2], out=out[2]);
+  And (a=x[3], b=y[3], out=out[3]);
+  And (a=x[4], b=y[4], out=out[4]);
+  And (a=x[5], b=y[5], out=out[5]);
+  And (a=x[6], b=y[6], out=out[6]);
+  And (a=x[7], b=y[7], out=out[7]);
+  And (a=x[8], b=y[8], out=out[8]);
+  And (a=x[9], b=y[9], out=out[9]);
+  And (a=x[10], b=y[10], out=out[10]);
+  And (a=x[11], b=y[11], out=out[11]);
+  And (a=x[12], b=y[12], out=out[12]);
+  And (a=x[13], b=y[13], out=out[13]);
+  And (a=x[14], b=y[14], out=out[14]);
+  And (a=x[15], b=y[15], out=out[15]);
+}

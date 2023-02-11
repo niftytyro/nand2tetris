@@ -1,0 +1,29 @@
+/**
+* 16-bit Mux gate:
+* for i in 0..15:
+*     out[0..15] = x[0..15] if sel = 0
+*     out[0..15] = y[0..15] otherwise
+*/
+
+CHIP Mux16 {
+  IN x[16], y[16], sel;
+  OUT out[16];
+
+  PARTS:
+  Mux (a=x[0], b=y[0], sel=sel, out=out[0]);
+  Mux (a=x[1], b=y[1], sel=sel, out=out[1]);
+  Mux (a=x[2], b=y[2], sel=sel, out=out[2]);
+  Mux (a=x[3], b=y[3], sel=sel, out=out[3]);
+  Mux (a=x[4], b=y[4], sel=sel, out=out[4]);
+  Mux (a=x[5], b=y[5], sel=sel, out=out[5]);
+  Mux (a=x[6], b=y[6], sel=sel, out=out[6]);
+  Mux (a=x[7], b=y[7], sel=sel, out=out[7]);
+  Mux (a=x[8], b=y[8], sel=sel, out=out[8]);
+  Mux (a=x[9], b=y[9], sel=sel, out=out[9]);
+  Mux (a=x[10], b=y[10], sel=sel, out=out[10]);
+  Mux (a=x[11], b=y[11], sel=sel, out=out[11]);
+  Mux (a=x[12], b=y[12], sel=sel, out=out[12]);
+  Mux (a=x[13], b=y[13], sel=sel, out=out[13]);
+  Mux (a=x[14], b=y[14], sel=sel, out=out[14]);
+  Mux (a=x[15], b=y[15], sel=sel, out=out[15]);
+}
