@@ -1,0 +1,24 @@
+/**
+* 4-way 16-bit Mux gate:
+* out[0..16] = a[0..16] if (sel == [0, 0])
+* out[0..16] = b[0..16] if (sel == [0, 1])
+* out[0..16] = c[0..16] if (sel == [1, 0])
+* out[0..16] = d[0..16] if (sel == [1, 1])
+*/
+
+CHIP Mux4Way16 {
+  IN a[16], b[16], c[16], d[16], sel[2];
+  OUT out[16];
+
+  PARTS:
+  Not (in=sel[0], out=notsel0);
+  Not (in=sel[1], out=notsel1);
+
+  And (a=notsel0, b=sel[1], out=selb);
+  And (a=sel[0], b=notsel1, out=selc);
+  And (a=sel[0], b=sel[1], out=seld);
+
+  Mux16 (a=a, b=b, sel=selb, out=out1);
+  Mux16 (a=out1, b=c, sel=selc, out=out2);
+  Mux16 (a=out2, b=d, sel=seld, out=out);
+}
