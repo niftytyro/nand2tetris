@@ -1,0 +1,11 @@
+/*
+ * Adds constant 1 to a 16-bit number.
+ */
+
+CHIP Incrementer16 {
+  IN in[16]; 
+  OUT out[16];
+
+  PARTS:
+  Adder16 (a=in, b[0]=true, b[1..15]=false, sum=out);
+}
