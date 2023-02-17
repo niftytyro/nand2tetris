@@ -1,0 +1,22 @@
+/*
+* RAM512 - 512 16-bit registers.
+*/
+
+CHIP RAM512 {
+  IN in[16], address[9], load;
+  OUT out[16];
+
+  PARTS:
+  Mux8Way16 (a=outA, b=outB, c=outC, d=outD, e=outE, f=outF, g=outG, h=outH, sel=address[6..8], out=out);
+
+  DMux8Way (in=load, sel=address[6..8], a=loadA, b=loadB, c=loadC, d=loadD, e=loadE, f=loadF, g=loadG, h=loadH);
+
+  RAM64 (in=in, address=address[0..5], load=loadA, out=outA);
+  RAM64 (in=in, address=address[0..5], load=loadB, out=outB);
+  RAM64 (in=in, address=address[0..5], load=loadC, out=outC);
+  RAM64 (in=in, address=address[0..5], load=loadD, out=outD);
+  RAM64 (in=in, address=address[0..5], load=loadE, out=outE);
+  RAM64 (in=in, address=address[0..5], load=loadF, out=outF);
+  RAM64 (in=in, address=address[0..5], load=loadG, out=outG);
+  RAM64 (in=in, address=address[0..5], load=loadH, out=outH);
+}
