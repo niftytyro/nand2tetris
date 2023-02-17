@@ -1,0 +1,22 @@
+/*
+* RAM64 - 64 16-bit registers.
+*/
+
+CHIP RAM64 {
+  IN in[16], address[6], load;
+  OUT out[16];
+
+  PARTS:
+  Mux8Way16 (a=outA, b=outB, c=outC, d=outD, e=outE, f=outF, g=outG, h=outH, sel=address[3..5], out=out);
+
+  DMux8Way (in=load, sel=address[3..5], a=loadA, b=loadB, c=loadC, d=loadD, e=loadE, f=loadF, g=loadG, h=loadH);
+
+  RAM8 (in=in, address=address[0..2], load=loadA, out=outA);
+  RAM8 (in=in, address=address[0..2], load=loadB, out=outB);
+  RAM8 (in=in, address=address[0..2], load=loadC, out=outC);
+  RAM8 (in=in, address=address[0..2], load=loadD, out=outD);
+  RAM8 (in=in, address=address[0..2], load=loadE, out=outE);
+  RAM8 (in=in, address=address[0..2], load=loadF, out=outF);
+  RAM8 (in=in, address=address[0..2], load=loadG, out=outG);
+  RAM8 (in=in, address=address[0..2], load=loadH, out=outH);
+}
