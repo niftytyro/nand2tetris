@@ -1,0 +1,14 @@
+/**
+* 1-bit register. Stores a single bit.
+* if load(t-1) then out(t) = in(t-1)
+*                   out(t) = out(t-1)
+*/
+
+CHIP Bit {
+  IN in, load;
+  OUT out;
+
+  PARTS:
+  Mux (a=dffOut, b=in, sel=load, out=muxOut);
+  DFF (in=muxOut, out=dffOut, out=out);
+}
