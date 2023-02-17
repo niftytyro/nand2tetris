@@ -1,0 +1,23 @@
+/*
+* RAM8 - 8 16-bit registers.
+* out[t] = RAM8[k][t]
+* if load[t-1] = 1 then RAM8[k][t] = in[t-1]
+*/
+
+CHIP RAM8 {
+  IN in[16], load, address[3];
+  OUT out[16];
+
+  PARTS:
+  Mux8Way16 (a=outA, b=outB, c=outC, d=outD, e=outE, f=outF, g=outG, h=outH, sel=address, out=out);
+  DMux8Way (in=load, sel=address, a=loadA, b=loadB, c=loadC, d=loadD, e=loadE, f=loadF, g=loadG, h=loadH);
+
+  Register (in=in, load=loadA, out=outA);
+  Register (in=in, load=loadB, out=outB);
+  Register (in=in, load=loadC, out=outC);
+  Register (in=in, load=loadD, out=outD);
+  Register (in=in, load=loadE, out=outE);
+  Register (in=in, load=loadF, out=outF);
+  Register (in=in, load=loadG, out=outG);
+  Register (in=in, load=loadH, out=outH);
+}
