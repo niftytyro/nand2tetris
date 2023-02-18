@@ -1,0 +1,25 @@
+// A Hack Assembly program that multiplies two numbers in R0 and R1 and stores the product in R2.
+  @i
+  M=1
+  @R0
+  D=M
+  @R2
+  M=0
+(LOOP)
+  @R1
+  D=M
+  @i
+  D=M-D
+  @END
+  D;JGT
+  @R0
+  D=M
+  @R2
+  M=M+D
+  @i
+  M=M+1
+  @LOOP
+  0;JMP
+(END)
+  @END
+  0;JMP
